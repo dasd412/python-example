@@ -13,6 +13,22 @@ class Person:
     def species_info(cls):
         print(f"Species : {cls.species}")
 
+    def __str__(self):  # 객체의 문자열 표현
+        return f"{self.name},{self.age}"
+
+    def __repr__(self):  # 객체의 공식적인 문자열 표현
+        return f"Person(name={self.name!r}, age={self.age})"
+
+    def __eq__(self, other):  # 객체 간의 동등성 정의
+        if isinstance(other, Person):
+            return self.name == other.name and self.age == other.age
+        return False
+
+    def __lt__(self, other):  # 객체 간의 순서 정의
+        if isinstance(other, Person):
+            return self.age < other.age
+        return NotImplemented
+
 
 class MathOperations:
     # 클래스나 인스턴스와 상관없이 동작하는 메서드가 스태틱 메서드
@@ -38,6 +54,11 @@ def main():
 
     result = MathOperations.add(5, 3)
     print(result)
+
+    print(person1)
+    print(repr(person1))
+    print(person1 == person2)
+    print(person1 < person2)
 
 
 if __name__ == "__main__":
