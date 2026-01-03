@@ -31,6 +31,7 @@ class ConnectionPool:
             )
             return conn
         except asyncio.TimeoutError:
+            print("timeout")
             return None
 
     async def release(self, conn: Connection):
